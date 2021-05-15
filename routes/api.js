@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
 // DELETE ALL BOOKS
 router.delete("/", async (req, res) => {
     try {
-        const dbRes = await Book.delete();
+        const dbRes = await Book.deleteMany();
         res.send("complete delete successful");
     } catch (err) {
         res.send("Error while deleting books");
