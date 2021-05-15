@@ -19,7 +19,6 @@ router.post("/", async (req, res) => {
         res.json(rest);
     } catch (err) {
         res.send("error when creating a new book");
-        res.sendStatus(400);
         console.log("error when creating a new book", err);
     }
 });
@@ -40,7 +39,6 @@ router.get("/", async (req, res) => {
         res.json(result);
     } catch (error) {
         res.send("Error when getting books");
-        res.sendStatus(400);
         console.log("error when getting books", error);
     }
 });
@@ -51,7 +49,6 @@ router.delete("/", async (req, res) => {
         const dbRes = await Book.delete();
         res.send("complete delete successful");
     } catch (err) {
-        res.sendStatus(400);
         res.send("Error while deleting books");
         console.log("error while deleting books", err);
     }
@@ -74,7 +71,6 @@ router.post("/:id", async (req, res) => {
         }
         res.json(book);
     } catch (error) {
-        res.sendStatus(400);
         res.send("Error when adding comment");
         console.log("error when adding comment", error);
     }
@@ -91,7 +87,6 @@ router.get("/:id", async (req, res) => {
         }
         res.json(book);
     } catch (error) {
-        res.sendStatus(400);
         res.send("error when getting a book");
         console.log("Error when getting a book", error);
     }
@@ -103,13 +98,12 @@ router.delete("/:id", async(req, res) => {
     try {
         const book = await Book.findByIdAndDelete(id);
         if (!book) {
-            res.send("no book is found");
+            res.send("no book exists");
             return;
         }
         res.send("delete successful");
     } catch (error) {
         res.send("Error while deleting");
-        res.sendStatus(400);
         console.log("Error while deleting", error);
     }
 });
